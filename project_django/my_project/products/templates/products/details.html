@@ -4,20 +4,20 @@
 {% block content %}
 <div class="product-details-card">
 
-    <!-- صورة المنتج والكاتيجوري -->
+   
     <div class="product-image">
         <img src="{{ product.image.url }}" alt="{{ product.name }}">
         <p class="category-name">Category: <strong>{{ product.category.name }}</strong></p>
     </div>
 
-    <!-- معلومات المنتج -->
+ 
     <div class="product-info">
         <h2>{{ product.name }}</h2>
         <p><strong>Price:</strong> ${{ product.price }}</p>
         <p><strong>Stock:</strong> {{ product.stock }}</p>
         <p><strong>Description:</strong> {{ product.description }}</p>
         
-        <!-- الأزرار -->
+        
         <div class="buttons">
             <a href="{% url 'products.index' %}" class="button">Back to Products</a>
             <a href="{{ product.category.show_url }}" class="button view-category-btn">View Category</a>
