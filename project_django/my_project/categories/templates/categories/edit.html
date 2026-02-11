@@ -1,0 +1,58 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 style="text-align:center; color:#2a9df4; margin-bottom:20px;">
+    {% if form.instance.pk %}Edit Category{% else %}Add New Category{% endif %}
+</h2>
+
+<div class="form-container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if form.instance.pk %}Save Changes{% else %}Add Category{% endif %}</button>
+    </form>
+</div>
+
+<div style="text-align:center; margin-top:20px;">
+    <a href="{% url 'categories.index' %}" class="btn btn-back">Back to Categories</a>
+</div>
+
+<style>
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 25px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.form-container button {
+    padding: 12px;
+    background-color: #2a9df4;
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.form-container button:hover {
+    background-color: #1e7dc7;
+    transform: translateY(-2px);
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #555;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-back:hover { background: #333; }
+</style>
+{% endblock %}

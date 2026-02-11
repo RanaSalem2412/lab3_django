@@ -1,0 +1,112 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<h2 style="text-align:center; color:#2a9df4; margin-bottom:30px;">All Products</h2>
+
+<div style="text-align:center; margin-bottom:30px;">
+    <a href="{% url 'products.create' %}" class="action-btn create-btn">+ Create New Product</a>
+</div>
+
+<div class="products-grid">
+{% for product in products %}
+    <div class="product-card">
+        <div class="product-image">
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <p><strong>Stock:</strong> {{ product.stock }}</p>
+        </div>
+        <div class="product-actions">
+            <a class="action-btn action-show" href="{{ product.show_url }}">Show Details</a>
+            <a class="action-btn action-edit" href="{% url 'products.edit' product.id %}">Edit</a>
+            <a class="action-btn action-delete" href="{{ product.delete_url }}">Delete</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+<style>
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0 20px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.product-image img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-image img:hover {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.product-info h3 {
+    margin-bottom: 10px;
+    color: #2a9df4;
+}
+
+.product-info p {
+    margin: 5px 0;
+    font-size: 0.95em;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 15px;
+    background-color: #f9f9f9;
+}
+
+.action-btn {
+    padding: 7px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.action-show { background-color: #2a9df4; }
+.action-show:hover { background-color: #1e7dc7; }
+
+.action-edit { background-color: #f0ad4e; }
+.action-edit:hover { background-color: #d9932b; }
+
+.action-delete { background-color: #d9534f; }
+.action-delete:hover { background-color: #c12e2a; }
+
+.create-btn { 
+    background-color: #5cb85c; 
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+.create-btn:hover { background-color: #449d44; }
+
+</style>
+{% endblock %}

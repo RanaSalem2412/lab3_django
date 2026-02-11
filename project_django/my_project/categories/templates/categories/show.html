@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="category-header">
+    {% if category.image %}
+        <img src="{{ category.image.url }}" alt="{{ category.name }}">
+    {% else %}
+        <img src="{% static 'images/default-category.png' %}" alt="Default Category">
+    {% endif %}
+    <h1>{{ category.name }}</h1>
+    <p>{{ category.description }}</p>
+</div>
+
+<div class="category-actions">
+    <a href="{% url 'products.create' %}?category={{ category.id }}" class="btn btn-add-product">+ Add New Product</a>
+    <a href="{% url 'categories.index' %}" class="btn btn-back">Back to Categories</a>
+</div>
+
+<div class="products-grid">
+    {% for product in products %}
+    <div class="product-card">
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+            <img src="{% static 'images/default-product.png' %}" alt="Default Product">
+        {% endif %}
+        <div class="product-body">
+            <h3>{{ product.name }}</h3>
+            <p>Price: ${{ product.price }}</p>
+            <p>Stock: {{ product.stock }}</p>
+            <div class="product-actions">
+                <a href="{{ product.show_url }}" class="btn btn-view">View Details</a>
+                <a href="{% url 'products.edit' product.id %}" class="btn btn-edit">Edit</a>
+                <a href="{{ product.delete_url }}" class="btn btn-delete">Delete</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p style="text-align:center;">No products in this category yet.</p>
+    {% endfor %}
+</div>
+
+<style>
+.category-header { text-align:center; margin-bottom:30px; }
+.category-header img { width:200px; height:200px; object-fit:cover; border-radius:12px; margin-bottom:15px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
+.category-header h1 { font-size:2em; margin-bottom:8px; }
+.category-header p { font-size:1em; color:#555; }
+
+.category-actions { text-align:center; margin-bottom:25px; }
+.btn { padding:10px 18px; border-radius:8px; color:#fff; text-decoration:none; font-weight:600; margin:5px; transition: all 0.2s; }
+.btn-add-product { background:#9c27b0; } .btn-add-product:hover { background:#7b1fa2; transform:translateY(-2px); }
+.btn-back { background:#555; } .btn-back:hover { background:#333; transform:translateY(-2px); }
+
+.products-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:25px; }
+.product-card { background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+.product-card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.2); }
+.product-card img { width:100%; height:160px; object-fit:cover; }
+.product-body { padding:12px 15px; text-align:center; }
+.product-body h3 { margin:8px 0; font-size:1.2em; }
+.product-body p { font-size:0.95em; color:#555; }
+.product-actions { margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+.btn-view { background:#4caf50; } .btn-view:hover { background:#3e8e41; transform:translateY(-2px); }
+.btn-edit { background:#ffc107; color:#333; } .btn-edit:hover { background:#e0a800; transform:translateY(-2px); }
+.btn-delete { background:#f44336; } .btn-delete:hover { background:#d32f2f; transform:translateY(-2px); }
+</style>
+{% endblock %}

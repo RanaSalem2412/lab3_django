@@ -1,0 +1,138 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="product-details-card">
+
+    <!-- صورة المنتج والكاتيجوري -->
+    <div class="product-image">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <p class="category-name">Category: <strong>{{ product.category.name }}</strong></p>
+    </div>
+
+    <!-- معلومات المنتج -->
+    <div class="product-info">
+        <h2>{{ product.name }}</h2>
+        <p><strong>Price:</strong> ${{ product.price }}</p>
+        <p><strong>Stock:</strong> {{ product.stock }}</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        
+        <!-- الأزرار -->
+        <div class="buttons">
+            <a href="{% url 'products.index' %}" class="button">Back to Products</a>
+            <a href="{{ product.category.show_url }}" class="button view-category-btn">View Category</a>
+            
+        </div>
+    </div>
+
+</div>
+
+<style>
+.product-details-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    max-width: 900px;
+    margin: 40px auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-details-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.product-image {
+    flex: 0 0 350px;
+    text-align: center;
+    position: relative;
+}
+
+.product-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.product-image img:hover {
+    transform: scale(1.05);
+}
+
+/* اسم الكاتيجوري تحت الصورة */
+.category-name {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #2a9df4;
+}
+
+.product-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.product-info h2 {
+    margin-bottom: 15px;
+    color: #2a9df4;
+    font-size: 2em;
+}
+
+.product-info p {
+    margin-bottom: 12px;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.product-info .buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* أزرار */
+a.button {
+    padding: 10px 20px;
+    background-color: #2a9df4;
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a.button:hover {
+    background-color: #1e7dc7;
+    transform: translateY(-2px);
+}
+
+a.edit-btn {
+    background-color: #4caf50;
+}
+
+a.edit-btn:hover {
+    background-color: #3e8e41;
+}
+
+a.delete-btn {
+    background-color: #f44336;
+}
+
+a.delete-btn:hover {
+    background-color: #d32f2f;
+}
+
+a.view-category-btn {
+    background-color: #ffc107;
+    color: #333;
+}
+
+a.view-category-btn:hover {
+    background-color: #e0a800;
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}

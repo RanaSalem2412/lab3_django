@@ -1,0 +1,54 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="contact-card">
+    <h2>Contact Us</h2>
+    <p class="contact-info"><strong>Email:</strong> info@onlinestore.com</p>
+    <p class="contact-info"><strong>Phone:</strong> +123456789</p>
+    <a href="mailto:info@onlinestore.com" class="button">Send Email</a>
+</div>
+
+<style>
+.contact-card {
+    background-color: #fff;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.contact-card h2 {
+    color: #2a9df4;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #2a9df4;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a.button:hover {
+    background-color: #1e7dc7;
+    transform: translateY(-2px);
+}
+</style>
+{% endblock %}

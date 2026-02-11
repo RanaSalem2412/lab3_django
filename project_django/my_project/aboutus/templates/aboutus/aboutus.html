@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<div class="about-card">
+    <h2>About Us</h2>
+    <p>Welcome to <strong>Our Online Store</strong>, your one-stop shop for amazing products. We are passionate about bringing you high-quality items at the best prices.</p>
+    <p>Our mission is to make your shopping experience enjoyable, easy, and trustworthy. Thank you for choosing us!</p>
+</div>
+
+<style>
+.about-card {
+    background-color: #fff;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+}
+
+.about-card h2 {
+    color: #2a9df4;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.about-card p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+}
+</style>
+{% endblock %}
